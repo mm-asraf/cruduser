@@ -54,5 +54,5 @@ public class GlobalExceptionHandler {
 		nValid.getBindingResult().getFieldErrors()
 		.forEach(error -> msgList.put(error.getField(), error.getDefaultMessage()));
 		return new ResponseEntity<>(msgList, HttpStatus.BAD_REQUEST);
-	}
+	}	
 }

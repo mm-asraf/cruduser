@@ -7,8 +7,8 @@ import jakarta.validation.Valid;
 
 public interface IPersonalDetailsService {
 	public  List<PersonalDetails> getAllUser();
-	public PersonalDetails getPersonUser(long userId);
-	public ResponseModel createPersonUser(@Valid PersonalDetails user);
-	public ResponseModel updatePersonUser(@Valid PersonalDetails user);
+	public PersonalDetails getPersonUser(Long userId);
+	public ResponseModel createPersonUser( PersonalDetails user);
+	public ResponseModel updatePersonUser(PersonalDetails person,Long user);
 	public ResponseModel deletePersonUser(PersonalDetails user);
 }
