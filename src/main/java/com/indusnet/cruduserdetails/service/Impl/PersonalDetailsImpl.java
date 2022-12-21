@@ -4,7 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import com.indusnet.cruduserdetails.Repository.IUserDetailsRepository;
+import com.indusnet.cruduserdetails.Repository.IPersonalDetailsRepository;
 import com.indusnet.cruduserdetails.exception.RecordFoundException;
 import com.indusnet.cruduserdetails.exception.RecordNotFoundException;
 import com.indusnet.cruduserdetails.model.PersonalDetails;
@@ -20,7 +20,7 @@ import com.indusnet.cruduserdetails.service.IPersonalDetailsService;
 public class PersonalDetailsImpl implements IPersonalDetailsService {
 	
 	@Autowired
-	IUserDetailsRepository iPersonalDetailsRepo;
+	IPersonalDetailsRepository iPersonalDetailsRepo;
 	
 	/**
 	 *this method is used for collecting user personal details.
@@ -58,7 +58,6 @@ public class PersonalDetailsImpl implements IPersonalDetailsService {
 		},()-> {throw new RecordNotFoundException("user details is not present in our db pls try another");});
 		return ResponseModel.builder().message("profile data updated Successfully").statusCode(HttpStatus.OK).messageTypeId(MessageTypeConst.SUCCESS.getMessage()).build();	
 	}
-	
 	
 	/**
 	 *this method is used for getting all users with their personal details.

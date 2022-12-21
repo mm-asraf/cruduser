@@ -24,7 +24,7 @@ public class PersonalDetails {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="personaluserid")
 	@SequenceGenerator(name = "personaluserid", sequenceName = "personaluserid", initialValue = 2001)
-	private long id;
+	private Long id;
 	
 	@NotEmpty
 	@Size(max = 25,message = "max character should be 25")
