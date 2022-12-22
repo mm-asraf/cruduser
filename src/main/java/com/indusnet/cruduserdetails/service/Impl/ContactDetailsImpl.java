@@ -20,8 +20,7 @@ public class ContactDetailsImpl implements IContactDetailsService {
 
 	@Override
 	public List<ContactDetails> getContactDetail() {
-		List<ContactDetails> personDetail = (List<ContactDetails>) iContactDetailsRepo.findAll();
-		return personDetail;
+		return (List<ContactDetails>) iContactDetailsRepo.findAll();
 	}
 
 	@Override

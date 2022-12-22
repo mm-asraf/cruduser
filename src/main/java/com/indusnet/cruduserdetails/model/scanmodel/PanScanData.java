@@ -41,7 +41,6 @@ public class PanScanData {
 	@Pattern(regexp="^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$", message = "date of birth of must contain this format like this yyyy-mm-dd")
 	private String dateOfBirth;
 	
-
 	@NotEmpty
 	@Size(min = 10,message = "min character should be 10")
 	@Pattern(regexp="[A-Z]{5}[0-9]{4}[A-Z]{1}",message="pan number should contains five alphabet then ")

@@ -1,7 +1,6 @@
 package com.indusnet.cruduserdetails.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +13,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.indusnet.cruduserdetails.model.EmploymentDetails;
 import com.indusnet.cruduserdetails.model.FinancialDetails;
 import com.indusnet.cruduserdetails.model.common.ResponseModel;
 import com.indusnet.cruduserdetails.service.IFinancialDetailsService;
-
 import jakarta.validation.Valid;
 
 @CrossOrigin("*")
@@ -37,8 +33,8 @@ public class FinancialDetailController {
 
 	@GetMapping("/financialDetail/{finId}")
 	public FinancialDetails getEmploymentDetail(@PathVariable("finId") Long finId) {
-		FinancialDetails employeeDetail = iFinancialDetailsService.getFinancialDetail(finId);
-		return employeeDetail;	
+		return iFinancialDetailsService.getFinancialDetail(finId);
+			
 	}
 
 	@PostMapping("/financialDetail")
@@ -57,7 +53,6 @@ public class FinancialDetailController {
 
 	@DeleteMapping("/financialDetail/{finId}")
 	public ResponseModel deleteEmploymentDetail(Long finId) {
-		ResponseModel response = iFinancialDetailsService.deleteFinancialDetail(finId);	
-		return response;
+		return iFinancialDetailsService.deleteFinancialDetail(finId);	
 	}
 }

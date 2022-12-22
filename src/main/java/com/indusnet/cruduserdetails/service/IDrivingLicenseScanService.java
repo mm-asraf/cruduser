@@ -8,6 +8,4 @@ public interface IDrivingLicenseScanService {
 	public  List<DrivingLicenseScanData> getDrivingLicenseDetail();
 	public DrivingLicenseScanData getDrivingLicenseDetail(Long drivingId);
 	public ResponseModel createDrivingLicenseDetail( DrivingLicenseScanData drivingLicense);
-	public ResponseModel updateDrivingLicenseDetail(DrivingLicenseScanData drivingLicense,Long drivingId);
-	public ResponseModel deleteDrivingLicenseDetail(Long drivingId);
 }

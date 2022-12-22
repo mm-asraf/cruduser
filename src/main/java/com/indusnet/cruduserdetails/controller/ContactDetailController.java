@@ -33,8 +33,8 @@ public class ContactDetailController {
 
 	@GetMapping("/contactDetails/{contactId}")
 	public ContactDetails getContactDetail(@PathVariable("contactId") Long contactId) {
-		ContactDetails contactDetail = iContactDetailService.getContactDetail(contactId);
-		return contactDetail;
+		return iContactDetailService.getContactDetail(contactId);
+		
 	}
 
 	@PostMapping("/contactDetails")

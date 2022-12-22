@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.indusnet.cruduserdetails.model.OtherPersonalDetails;
-import com.indusnet.cruduserdetails.model.PersonalDetails;
 import com.indusnet.cruduserdetails.model.common.ResponseModel;
 import com.indusnet.cruduserdetails.service.IOtherPersonalDetailsService;
 import jakarta.validation.Valid;
@@ -33,8 +32,7 @@ public class OtherPersonalDetailController {
 
 	@GetMapping("/otherpersonal/{userId}")
 	public OtherPersonalDetails getOtherPersonal(@PathVariable("userId") Long userId) {
-		OtherPersonalDetails otherpersonal = iOtherPersonalDetailsService.getOtherPersonal(userId);
-		return otherpersonal;
+		return iOtherPersonalDetailsService.getOtherPersonal(userId);
 	}
 
 	@PostMapping("/otherpersonal")

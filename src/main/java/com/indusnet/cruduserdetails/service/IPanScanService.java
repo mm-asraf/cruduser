@@ -6,8 +6,6 @@ import com.indusnet.cruduserdetails.model.scanmodel.PanScanData;
 
 public interface IPanScanService {
 	public  List<PanScanData> getPanScanDetail();
-	public PanScanData getPanScanDetail(Long addressId);
+	public PanScanData getPanScanDetail(Long panId);
 	public ResponseModel createPanScanDetail( PanScanData panscan);
-	public ResponseModel updatePanScanDetail(PanScanData panscan,Long panId);
-	public ResponseModel deletePanScanDetail(Long panId);
 }

@@ -36,14 +36,13 @@ public class PersonalDetailController {
 
 	@GetMapping("/personalDetails/{personalId}")
 	public PersonalDetails getPersonUser(@PathVariable("personalId") Long personalId) {		
-		PersonalDetails response = iPersonalDetailService.getPersonUser(personalId);	
-		return response;
+		return iPersonalDetailService.getPersonUser(personalId);	
+		
 	}
 
 	@DeleteMapping("/personalDetails/{personalId}")
 	public ResponseModel deletePersonUser(@PathVariable("personalId") Long personalId) {		
-		ResponseModel response = iPersonalDetailService.deletePersonUser(personalId);	
-		return response;
+		return iPersonalDetailService.deletePersonUser(personalId);	
 	}
 
 	@PostMapping("/personalDetails")

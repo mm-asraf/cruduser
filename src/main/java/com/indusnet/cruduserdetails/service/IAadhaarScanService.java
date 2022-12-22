@@ -4,10 +4,8 @@ import java.util.List;
 import com.indusnet.cruduserdetails.model.common.ResponseModel;
 import com.indusnet.cruduserdetails.model.scanmodel.AadhaarScanData;
 
-public interface IAadhaarScanService   {
+public interface IAadhaarScanService{
 	public  List<AadhaarScanData> getAadhaarDetail();
 	public AadhaarScanData getAadhaarDetail(Long addressId);
 	public ResponseModel createAadhaarDetail( AadhaarScanData aadhaar);
-	public ResponseModel updateAadhaarDetail(AadhaarScanData aadhaar,Long aadharId);
-	public ResponseModel deleteAadhaarDetail(Long aadharId);
 }

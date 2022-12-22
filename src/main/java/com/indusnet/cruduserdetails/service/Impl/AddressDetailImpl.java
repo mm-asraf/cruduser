@@ -11,7 +11,7 @@ import com.indusnet.cruduserdetails.model.common.ResponseModel;
 import com.indusnet.cruduserdetails.service.IAddressDetailsService;
 
 public class AddressDetailImpl implements IAddressDetailsService{
-	
+
 	@Autowired
 	IAddressDetailsRepository iAddressDetailsRepo;
 
@@ -24,7 +24,7 @@ public class AddressDetailImpl implements IAddressDetailsService{
 	@Override
 	public AddressDetails getAddressDetail(Long userId) {
 		return iAddressDetailsRepo.findById(userId).orElseThrow(()->{throw new RecordNotFoundException("not availble");});
-		
+
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class AddressDetailImpl implements IAddressDetailsService{
 			iAddressDetailsRepo.save(updateAddressModel);	
 		},()-> {throw new RecordNotFoundException("user details is not present in our db pls try another");});
 		return ResponseModel.builder().message("profile data updated Successfully").statusCode(HttpStatus.OK).messageTypeId(MessageTypeConst.SUCCESS.getMessage()).build();	
-		
+
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public class AddressDetailImpl implements IAddressDetailsService{
 			iAddressDetailsRepo.deleteById(addressId);
 		}, ()-> {throw new RecordNotFoundException("Invalid id Not found");});	
 		return ResponseModel.builder().message("data deleted successfully").messageTypeId(MessageTypeConst.SUCCESS.getMessage()).statusCode(HttpStatus.OK).build();
-	
+
 	}
 
 }

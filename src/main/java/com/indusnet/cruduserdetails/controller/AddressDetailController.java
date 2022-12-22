@@ -33,8 +33,8 @@ public class AddressDetailController {
 
 	@GetMapping("/addessDetail/{addressId}")
 	public AddressDetails getOtherPersonal(@PathVariable("addressId") Long addressId) {
-		AddressDetails addressDetail = iAddressDetailsService.getAddressDetail(addressId);
-		return addressDetail;
+		return iAddressDetailsService.getAddressDetail(addressId);
+		
 	}
 
 	@PostMapping("/addessDetail")
