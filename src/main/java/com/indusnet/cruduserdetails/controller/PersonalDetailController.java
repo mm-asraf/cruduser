@@ -28,31 +28,31 @@ public class PersonalDetailController {
 
 	@Autowired
 	IPersonalDetailsService iPersonalDetailService;
-	
+
 	@GetMapping("/personalDetails")
 	public List<PersonalDetails> getPersonUser() {	
 		return this.iPersonalDetailService.getAllUser();
 	}
-	
+
 	@GetMapping("/personalDetails/{personalId}")
 	public PersonalDetails getPersonUser(@PathVariable("personalId") Long personalId) {		
 		PersonalDetails response = iPersonalDetailService.getPersonUser(personalId);	
 		return response;
 	}
-	
+
 	@DeleteMapping("/personalDetails/{personalId}")
 	public ResponseModel deletePersonUser(@PathVariable("personalId") Long personalId) {		
 		ResponseModel response = iPersonalDetailService.deletePersonUser(personalId);	
 		return response;
 	}
-	
+
 	@PostMapping("/personalDetails")
 	public ResponseEntity<ResponseModel> createPersonUser( @RequestBody @Valid PersonalDetails request) {
 		ResponseModel response = iPersonalDetailService.createPersonUser(request);
 		HttpStatus status = response.getStatusCode() != null ? response.getStatusCode() : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<>(response,status);
 	}
-	
+
 	@PutMapping("/personalDetails/{personalId}")
 	public ResponseEntity<ResponseModel> updatePersonUser(  @RequestBody @Valid PersonalDetails request,@PathVariable("personalId") Long personalId) {
 		ResponseModel response = iPersonalDetailService.updatePersonUser(request,personalId);

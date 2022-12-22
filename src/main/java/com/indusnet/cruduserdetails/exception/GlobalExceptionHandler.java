@@ -28,7 +28,7 @@ public class GlobalExceptionHandler {
 		PrintWriter printWriter = new PrintWriter(stringWriter);
 		e.printStackTrace(printWriter);
 		String stackTrace = stringWriter.toString();
-		
+
 		ErrorDetails errorDetails = ErrorDetails.builder()
 				.errorCode(1)
 				.status(HttpStatus.BAD_REQUEST.value())

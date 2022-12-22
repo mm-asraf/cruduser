@@ -7,8 +7,8 @@ import com.indusnet.cruduserdetails.model.common.ResponseModel;
 
 public interface IContactDetailsService {
 	public  List<ContactDetails> getContactDetail();
-	public ContactDetails getContactDetail(Long userId);
-	public ResponseModel createContactDetail( ContactDetails user);
-	public ResponseModel updateContactDetail(ContactDetails person,Long user);
-	public ResponseModel deleteContactDetail(Long personalId);
+	public ContactDetails getContactDetail(Long contactId);
+	public ResponseModel createContactDetail( ContactDetails contact);
+	public ResponseModel updateContactDetail(ContactDetails contact,Long contactId);
+	public ResponseModel deleteContactDetail(Long contactId);
 }

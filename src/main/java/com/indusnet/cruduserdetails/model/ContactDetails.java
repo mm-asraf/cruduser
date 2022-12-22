@@ -22,17 +22,14 @@ import lombok.NoArgsConstructor;
 @Getter
 @Builder
 public class ContactDetails {
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="contactId")
 	@SequenceGenerator(name = "contactId", sequenceName = "contactId", initialValue = 6001)
 	private Long id;
-	
 	@Column(unique=true)
 	@Size(min=10,max=10,message="mobile number should be 10 charecter")
 	@Pattern(regexp ="(0/91)?[7-9][0-9]{9}",message="Enter valid Mobile Number")
 	private String mobile;
-	
 	@NotEmpty
 	@Column(unique=true)
 	@Size(max = 35,message = "min character should be 3")

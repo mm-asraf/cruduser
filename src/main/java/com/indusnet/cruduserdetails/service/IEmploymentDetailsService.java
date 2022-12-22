@@ -7,8 +7,8 @@ import com.indusnet.cruduserdetails.model.common.ResponseModel;
 
 public interface IEmploymentDetailsService {
 	public  List<EmploymentDetails> getEmploymentDetail();
-	public EmploymentDetails getEmploymentDetail(Long userId);
-	public ResponseModel createEmploymentDetail( EmploymentDetails user);
-	public ResponseModel updateEmploymentDetail(EmploymentDetails person,Long user);
-	public ResponseModel deleteEmploymentDetail(Long personalId);
+	public EmploymentDetails getEmploymentDetail(Long empId);
+	public ResponseModel createEmploymentDetail( EmploymentDetails employeeDetail);
+	public ResponseModel updateEmploymentDetail(EmploymentDetails employeeDetail,Long empId);
+	public ResponseModel deleteEmploymentDetail(Long empId);
 }

@@ -5,9 +5,9 @@ import com.indusnet.cruduserdetails.model.FinancialDetails;
 import com.indusnet.cruduserdetails.model.common.ResponseModel;
 
 public interface IFinancialDetailsService {
-	public  List<FinancialDetails> getAllUser();
-	public FinancialDetails getFinancialDetail(Long userId);
-	public ResponseModel createFinancialDetail( FinancialDetails user);
-	public ResponseModel updateFinancialDetail(FinancialDetails person,Long user);
-	public ResponseModel deleteFinancialDetail(Long personalId);
+	public  List<FinancialDetails> getAllFinancialUser();
+	public FinancialDetails getFinancialDetail(Long finId);
+	public ResponseModel createFinancialDetail( FinancialDetails financialDetail);
+	public ResponseModel updateFinancialDetail(FinancialDetails financialDetail,Long finId);
+	public ResponseModel deleteFinancialDetail(Long finId);
 }

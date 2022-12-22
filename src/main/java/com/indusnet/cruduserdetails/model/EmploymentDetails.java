@@ -26,7 +26,6 @@ public class EmploymentDetails {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="Eid")
 	@SequenceGenerator(name = "Eid", sequenceName = "Eid", initialValue = 6001)
 	private Long id;
-	
 	@NotEmpty
 	private String employmentType;
 	@NotEmpty

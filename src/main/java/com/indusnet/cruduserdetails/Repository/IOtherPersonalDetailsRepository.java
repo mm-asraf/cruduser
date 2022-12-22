@@ -8,6 +8,5 @@ import com.indusnet.cruduserdetails.model.OtherPersonalDetails;
 
 @Repository
 public interface IOtherPersonalDetailsRepository extends CrudRepository<OtherPersonalDetails, Long> {
-	Optional<OtherPersonalDetails> findByIncomeProofNumber(String incomeProofNumber);
-	
+	Optional<OtherPersonalDetails> findByIncomeProofNumber(String incomeProofNumber);	
 }
