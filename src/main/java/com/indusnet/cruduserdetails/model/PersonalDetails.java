@@ -1,9 +1,11 @@
 package com.indusnet.cruduserdetails.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -46,4 +48,21 @@ public class PersonalDetails {
 	@NotEmpty
 	@Size(max = 25,message = "max character should be 25")
 	private String nationality;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private OtherPersonalDetails otherPersonalDetails;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private ContactDetails contactDetails;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private AddressDetails addressDetails;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private FinancialDetails financialDetails;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private EmploymentDetails employmentDetails;
+	
+	
 }

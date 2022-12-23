@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
@@ -24,7 +25,7 @@ import lombok.NoArgsConstructor;
 public class ContactDetails {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="contactId")
-	@SequenceGenerator(name = "contactId", sequenceName = "contactId", initialValue = 6001)
+	@SequenceGenerator(name = "contactId", sequenceName = "contactId", initialValue = 6501)
 	private Long id;
 	@Column(unique=true)
 	@Size(min=10,max=10,message="mobile number should be 10 charecter")
@@ -35,4 +36,8 @@ public class ContactDetails {
 	@Size(max = 35,message = "min character should be 3")
 	@Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$",message = "email should not contain special character but valid email style will be fine")
 	private String email;
+	
+	@OneToOne(mappedBy = "contactDetails")
+	private PersonalDetails personalDetails;
+
 }

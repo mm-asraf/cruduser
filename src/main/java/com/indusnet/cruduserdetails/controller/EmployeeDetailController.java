@@ -23,42 +23,38 @@ import jakarta.validation.Valid;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v0")
+@RequestMapping("/api/v0/employeeDetail")
 public class EmployeeDetailController {
 
 	@Autowired
 	IEmploymentDetailsService iEmployeeDetailService;
 
-	@GetMapping("/employeeDetail")
+	@GetMapping
 	public  List<EmploymentDetails> getEmploymentDetail(){
 		return this.iEmployeeDetailService.getEmploymentDetail();
 	}
 
-	@GetMapping("/employeeDetail/{empId}")
+	@GetMapping("/{empId}")
 	public EmploymentDetails getEmploymentDetail(@PathVariable("empId") Long empId) {
-		return iEmployeeDetailService.getEmploymentDetail(empId);
-			
+		return iEmployeeDetailService.getEmploymentDetail(empId);		
 	}
 
-	@PostMapping("/employeeDetail")
-	public ResponseEntity<ResponseModel> createEmploymentDetail(@RequestBody @Valid EmploymentDetails employeeDetail) {
-		ResponseModel response = iEmployeeDetailService.createEmploymentDetail(employeeDetail);
+	@PostMapping
+	public ResponseEntity<ResponseModel> createEmploymentDetail(@RequestBody @Valid EmploymentDetails employeeDetailRequest) {
+		ResponseModel response = iEmployeeDetailService.createEmploymentDetail(employeeDetailRequest);
 		HttpStatus status = response.getStatusCode() != null ? response.getStatusCode():HttpStatus.NOT_FOUND;
 		return new ResponseEntity<>(response,status);
 	}
 
-	@PutMapping("/employeeDetail/{empId}")
-	public ResponseEntity<ResponseModel> updateEmploymentDetail(@RequestBody @Valid EmploymentDetails employeeDetail,@PathVariable("empId") Long empId) {
-		ResponseModel response = iEmployeeDetailService.updateEmploymentDetail(employeeDetail, empId);
+	@PutMapping("/{empId}")
+	public ResponseEntity<ResponseModel> updateEmploymentDetail(@RequestBody @Valid EmploymentDetails employeeDetailRequest,@PathVariable("empId") Long empId) {
+		ResponseModel response = iEmployeeDetailService.updateEmploymentDetail(employeeDetailRequest, empId);
 		HttpStatus status = response.getStatusCode() != null ? response.getStatusCode():HttpStatus.NOT_FOUND;
 		return new ResponseEntity<>(response,status);
 	}
 
-	@DeleteMapping("/employeeDetail/{empId}")
+	@DeleteMapping("/{empId}")
 	public ResponseModel deleteEmploymentDetail(Long empId) {
-		ResponseModel response = iEmployeeDetailService.deleteEmploymentDetail(empId);	
-		return response;
+		return iEmployeeDetailService.deleteEmploymentDetail(empId);	
 	}
-
-
 }

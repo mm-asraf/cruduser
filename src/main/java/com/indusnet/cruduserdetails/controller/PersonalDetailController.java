@@ -23,36 +23,35 @@ import jakarta.validation.Valid;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v0")
+@RequestMapping("/api/v0/personalDetails")
 public class PersonalDetailController {
 
 	@Autowired
 	IPersonalDetailsService iPersonalDetailService;
 
-	@GetMapping("/personalDetails")
+	@GetMapping
 	public List<PersonalDetails> getPersonUser() {	
 		return this.iPersonalDetailService.getAllUser();
 	}
 
-	@GetMapping("/personalDetails/{personalId}")
+	@GetMapping("/{personalId}")
 	public PersonalDetails getPersonUser(@PathVariable("personalId") Long personalId) {		
-		return iPersonalDetailService.getPersonUser(personalId);	
-		
+		return iPersonalDetailService.getPersonUser(personalId);		
 	}
 
-	@DeleteMapping("/personalDetails/{personalId}")
+	@DeleteMapping("/{personalId}")
 	public ResponseModel deletePersonUser(@PathVariable("personalId") Long personalId) {		
 		return iPersonalDetailService.deletePersonUser(personalId);	
 	}
 
-	@PostMapping("/personalDetails")
+	@PostMapping
 	public ResponseEntity<ResponseModel> createPersonUser( @RequestBody @Valid PersonalDetails request) {
 		ResponseModel response = iPersonalDetailService.createPersonUser(request);
 		HttpStatus status = response.getStatusCode() != null ? response.getStatusCode() : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<>(response,status);
 	}
 
-	@PutMapping("/personalDetails/{personalId}")
+	@PutMapping("/{personalId}")
 	public ResponseEntity<ResponseModel> updatePersonUser(  @RequestBody @Valid PersonalDetails request,@PathVariable("personalId") Long personalId) {
 		ResponseModel response = iPersonalDetailService.updatePersonUser(request,personalId);
 		HttpStatus status = response.getStatusCode() != null ? response.getStatusCode() : HttpStatus.NOT_FOUND;

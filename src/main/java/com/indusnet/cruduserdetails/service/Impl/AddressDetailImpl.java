@@ -17,8 +17,7 @@ public class AddressDetailImpl implements IAddressDetailsService{
 
 	@Override
 	public List<AddressDetails> getAddressDetail() {
-		List<AddressDetails> addressDetail = (List<AddressDetails>) iAddressDetailsRepo.findAll();
-		return addressDetail;
+		return (List<AddressDetails>) iAddressDetailsRepo.findAll();
 	}
 
 	@Override

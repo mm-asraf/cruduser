@@ -35,7 +35,7 @@ public class PersonalDetailsImpl implements IPersonalDetailsService {
 				.placeOfBirth(user.getPlaceOfBirth())
 				.nationality(user.getNationality())
 				.build();
-		iPersonalDetailsRepo.findByFirstName(user.getFirstName()).ifPresentOrElse(x->{throw new RecordFoundException("already exist"); }, ()->iPersonalDetailsRepo.save(personalDetails));
+		iPersonalDetailsRepo.findById(user.getId()).ifPresentOrElse(x->{throw new RecordFoundException("already exist"); }, ()->iPersonalDetailsRepo.save(personalDetails));
 		return ResponseModel.builder().message("data added successfully").messageTypeId(MessageTypeConst.SUCCESS.getMessage()).statusCode(HttpStatus.OK).build();
 	}
 
@@ -64,8 +64,7 @@ public class PersonalDetailsImpl implements IPersonalDetailsService {
 	 */
 	@Override
 	public List<PersonalDetails> getAllUser() {
-		List<PersonalDetails> personDetail = (List<PersonalDetails>) iPersonalDetailsRepo.findAll();
-		return personDetail;
+		return  (List<PersonalDetails>) iPersonalDetailsRepo.findAll();
 	}
 
 	/**

@@ -20,18 +20,18 @@ import jakarta.validation.Valid;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v0")
+@RequestMapping("/api/v0/contactDetails")
 public class ContactDetailController {
 
 	@Autowired
 	IContactDetailsService iContactDetailService;
 
-	@GetMapping("/contactDetails")
+	@GetMapping
 	public  List<ContactDetails> getContactDetail() {
 		return this.iContactDetailService.getContactDetail();
 	}
 
-	@GetMapping("/contactDetails/{contactId}")
+	@GetMapping("/{contactId}")
 	public ContactDetails getContactDetail(@PathVariable("contactId") Long contactId) {
 		return iContactDetailService.getContactDetail(contactId);
 		
@@ -44,18 +44,15 @@ public class ContactDetailController {
 		return new ResponseEntity<>(response,status);
 	}
 
-	@PutMapping("/contactDetails/{contactId}")
+	@PutMapping("/{contactId}")
 	public ResponseEntity<ResponseModel> updateContactDetail(@RequestBody @Valid  ContactDetails contact,@PathVariable("contactId") Long contactId) {
 		ResponseModel response = iContactDetailService.updateContactDetail(contact, contactId);
 		HttpStatus status = response.getStatusCode() != null ? response.getStatusCode() : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<>(response,status);	
 	}
 
-	@DeleteMapping("contactDetails/{contactId}")
+	@DeleteMapping("/{contactId}")
 	public ResponseModel deletePersonUser(@PathVariable("contactId") Long contactId) {		
-		ResponseModel response = iContactDetailService.deleteContactDetail(contactId);	
-		return response;
+		return iContactDetailService.deleteContactDetail(contactId);	
 	}
-
-
 }

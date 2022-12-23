@@ -14,11 +14,10 @@ public class EmploymentDetailsImpl implements IEmploymentDetailsService {
 
 	@Autowired
 	IEmployementDetailsRepository iEmployementDetailsRepo;
-	
+
 	@Override
 	public List<EmploymentDetails> getEmploymentDetail() {
-		List<EmploymentDetails> employeeDetail = (List<EmploymentDetails>) iEmployementDetailsRepo.findAll();
-		return employeeDetail;
+		return (List<EmploymentDetails>) iEmployementDetailsRepo.findAll();	
 	}
 
 	@Override
@@ -38,7 +37,6 @@ public class EmploymentDetailsImpl implements IEmploymentDetailsService {
 				.build();
 		iEmployementDetailsRepo.save(addressDetails);
 		return ResponseModel.builder().message("data added successfully").messageTypeId(MessageTypeConst.SUCCESS.getMessage()).statusCode(HttpStatus.OK).build();	
-		
 	}
 
 	@Override
@@ -56,7 +54,7 @@ public class EmploymentDetailsImpl implements IEmploymentDetailsService {
 			iEmployementDetailsRepo.save(updateAddressModel);	
 		},()-> {throw new RecordNotFoundException("user details is not present in our db pls try another");});
 		return ResponseModel.builder().message("profile data updated Successfully").statusCode(HttpStatus.OK).messageTypeId(MessageTypeConst.SUCCESS.getMessage()).build();	
-		
+
 	}
 
 	@Override
@@ -66,5 +64,4 @@ public class EmploymentDetailsImpl implements IEmploymentDetailsService {
 		}, ()-> {throw new RecordNotFoundException("Invalid id Not found");});	
 		return ResponseModel.builder().message("data deleted successfully").messageTypeId(MessageTypeConst.SUCCESS.getMessage()).statusCode(HttpStatus.OK).build();
 	}
-
 }

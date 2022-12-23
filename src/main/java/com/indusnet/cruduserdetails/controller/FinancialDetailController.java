@@ -20,33 +20,33 @@ import jakarta.validation.Valid;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v0")
+@RequestMapping("/api/v0/financialDetail")
 public class FinancialDetailController {
 
 	@Autowired
 	IFinancialDetailsService iFinancialDetailsService;
 
-	@GetMapping("/financialDetail")
+	@GetMapping
 	public List<FinancialDetails> getAllFinancialUser(){
 		return this.iFinancialDetailsService.getAllFinancialUser();
 	}
 
-	@GetMapping("/financialDetail/{finId}")
+	@GetMapping("/{finId}")
 	public FinancialDetails getEmploymentDetail(@PathVariable("finId") Long finId) {
 		return iFinancialDetailsService.getFinancialDetail(finId);
 			
 	}
 
-	@PostMapping("/financialDetail")
-	public ResponseEntity<ResponseModel> createEmploymentDetail(@RequestBody @Valid FinancialDetails financialDetail) {
-		ResponseModel response = iFinancialDetailsService.createFinancialDetail(financialDetail);
+	@PostMapping
+	public ResponseEntity<ResponseModel> createEmploymentDetail(@RequestBody @Valid FinancialDetails financialDetailRequest) {
+		ResponseModel response = iFinancialDetailsService.createFinancialDetail(financialDetailRequest);
 		HttpStatus status = response.getStatusCode() != null ? response.getStatusCode():HttpStatus.NOT_FOUND;
 		return new ResponseEntity<>(response,status);
 	}
 
-	@PutMapping("/financialDetail/{finId}")
-	public ResponseEntity<ResponseModel> updateEmploymentDetail(@RequestBody @Valid FinancialDetails financialDetail,@PathVariable("empId") Long finId) {
-		ResponseModel response = iFinancialDetailsService.updateFinancialDetail(financialDetail, finId);
+	@PutMapping("/{finId}")
+	public ResponseEntity<ResponseModel> updateEmploymentDetail(@RequestBody @Valid FinancialDetails financialDetailRequest,@PathVariable("empId") Long finId) {
+		ResponseModel response = iFinancialDetailsService.updateFinancialDetail(financialDetailRequest, finId);
 		HttpStatus status = response.getStatusCode() != null ? response.getStatusCode():HttpStatus.NOT_FOUND;
 		return new ResponseEntity<>(response,status);
 	}

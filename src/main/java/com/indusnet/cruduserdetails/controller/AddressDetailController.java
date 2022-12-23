@@ -20,41 +20,39 @@ import jakarta.validation.Valid;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v0")
+@RequestMapping("/api/v0/addessDetail")
 public class AddressDetailController {
 
 	@Autowired
 	IAddressDetailsService  iAddressDetailsService;
 
-	@GetMapping("/addessDetail")
+	@GetMapping
 	public List<AddressDetails> getAllOtherPersonal(){
 		return this.iAddressDetailsService.getAddressDetail();
 	}
 
-	@GetMapping("/addessDetail/{addressId}")
+	@GetMapping("/{addressId}")
 	public AddressDetails getOtherPersonal(@PathVariable("addressId") Long addressId) {
 		return iAddressDetailsService.getAddressDetail(addressId);
 		
 	}
 
-	@PostMapping("/addessDetail")
+	@PostMapping
 	public ResponseEntity<ResponseModel> createOtherPersonal(@RequestBody @Valid AddressDetails request) {
 		ResponseModel response = iAddressDetailsService.createAddressDetail(request);
 		HttpStatus status = response.getStatusCode() != null ? response.getStatusCode() : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<>(response,status);
 	}
 
-	@PutMapping("/addessDetail/{addressId}")
-	public ResponseEntity<ResponseModel> updateOtherPersonal(@RequestBody @Valid  AddressDetails addressDetail,@PathVariable("addressId") Long addressId) {
-		ResponseModel response = iAddressDetailsService.updateAddressDetail(addressDetail,addressId);
+	@PutMapping("/{addressId}")
+	public ResponseEntity<ResponseModel> updateOtherPersonal(@RequestBody @Valid  AddressDetails addressDetailRequest,@PathVariable("addressId") Long addressId) {
+		ResponseModel response = iAddressDetailsService.updateAddressDetail(addressDetailRequest,addressId);
 		HttpStatus status = response.getStatusCode() != null ? response.getStatusCode() : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<>(response,status);
 	}
 
-	@DeleteMapping("/addessDetail/{addressId}")
-	public ResponseModel deletePersonUser(@PathVariable("personalId") Long personalId) {		
-		ResponseModel response = iAddressDetailsService.deleteAddressDetail(personalId);	
-		return response;
+	@DeleteMapping("/{addressId}")
+	public ResponseModel deletePersonUser(@PathVariable("addressId") Long addressId) {		
+		return iAddressDetailsService.deleteAddressDetail(addressId);	
 	}
-
 }

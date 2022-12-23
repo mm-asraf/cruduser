@@ -19,32 +19,32 @@ import jakarta.validation.Valid;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v0")
+@RequestMapping("/api/v0/otherpersonal")
 public class OtherPersonalDetailController {
 
 	@Autowired
 	IOtherPersonalDetailsService iOtherPersonalDetailsService;
 
-	@GetMapping("/otherpersonal")
+	@GetMapping
 	public List<OtherPersonalDetails> getAllOtherPersonal(){
 		return this.iOtherPersonalDetailsService.getAllOtherPersonal();
 	}
 
-	@GetMapping("/otherpersonal/{userId}")
-	public OtherPersonalDetails getOtherPersonal(@PathVariable("userId") Long userId) {
-		return iOtherPersonalDetailsService.getOtherPersonal(userId);
+	@GetMapping("/{otherpersonalId}")
+	public OtherPersonalDetails getOtherPersonal(@PathVariable("otherpersonalId") Long otherpersonalId) {
+		return iOtherPersonalDetailsService.getOtherPersonal(otherpersonalId);
 	}
 
-	@PostMapping("/otherpersonal")
-	public ResponseEntity<ResponseModel> createOtherPersonal(@RequestBody @Valid OtherPersonalDetails request) {
-		ResponseModel response = iOtherPersonalDetailsService.createOtherPersonal(request);
+	@PostMapping
+	public ResponseEntity<ResponseModel> createOtherPersonal(@RequestBody @Valid OtherPersonalDetails otherPersonalRequest) {
+		ResponseModel response = iOtherPersonalDetailsService.createOtherPersonal(otherPersonalRequest);
 		HttpStatus status = response.getStatusCode() != null ? response.getStatusCode() : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<>(response,status);
 	}
 
-	@PutMapping("/personalDetails/{otherpersonalId}")
-	public ResponseEntity<ResponseModel> updateOtherPersonal(OtherPersonalDetails person, Long userId) {
-		ResponseModel response = iOtherPersonalDetailsService.updateOtherPersonal(person,userId);
+	@PutMapping("/{otherpersonalId}")
+	public ResponseEntity<ResponseModel> updateOtherPersonal(@RequestBody @Valid OtherPersonalDetails otherPersonalRequest,@PathVariable("otherpersonalId") Long otherpersonalId) {
+		ResponseModel response = iOtherPersonalDetailsService.updateOtherPersonal(otherPersonalRequest,otherpersonalId);
 		HttpStatus status = response.getStatusCode() != null ? response.getStatusCode() : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<>(response,status);
 	}	

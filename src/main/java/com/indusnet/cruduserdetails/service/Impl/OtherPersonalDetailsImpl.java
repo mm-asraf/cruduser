@@ -20,13 +20,12 @@ public class OtherPersonalDetailsImpl implements IOtherPersonalDetailsService {
 
 	@Override
 	public List<OtherPersonalDetails> getAllOtherPersonal() {
-		List<OtherPersonalDetails> personDetail = (List<OtherPersonalDetails>) iOtherPersonalDetails.findAll();
-		return personDetail;
+		return (List<OtherPersonalDetails>) iOtherPersonalDetails.findAll();	
 	}
 
 	@Override
-	public OtherPersonalDetails getOtherPersonal(Long userId) {			
-		return iOtherPersonalDetails.findById(userId).orElseThrow(()->{throw new RecordNotFoundException("not availble");});
+	public OtherPersonalDetails getOtherPersonal(Long otherPersonalId) {			
+		return iOtherPersonalDetails.findById(otherPersonalId).orElseThrow(()->{throw new RecordNotFoundException("not availble");});
 	}
 
 	@Override
@@ -47,8 +46,8 @@ public class OtherPersonalDetailsImpl implements IOtherPersonalDetailsService {
 	}
 
 	@Override
-	public ResponseModel updateOtherPersonal(OtherPersonalDetails person, Long userId) {
-		iOtherPersonalDetails.findById(userId).ifPresentOrElse(x->{
+	public ResponseModel updateOtherPersonal(OtherPersonalDetails person, Long otherPersonalId) {
+		iOtherPersonalDetails.findById(otherPersonalId).ifPresentOrElse(x->{
 			OtherPersonalDetails updatedOtherPersonalDetails = OtherPersonalDetails.builder()
 					.incomeProofType(person.getAddressProofType())
 					.incomeProofNumber(person.getAddressProofNumber())
