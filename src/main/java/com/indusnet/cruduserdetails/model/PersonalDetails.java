@@ -23,9 +23,11 @@ import jakarta.validation.constraints.Size;
 @Getter
 @Builder
 public class PersonalDetails {
+	
+//	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="personaluserid")
+//	@SequenceGenerator(name = "personaluserid", sequenceName = "personaluserid", initialValue = 2001)
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="personaluserid")
-	@SequenceGenerator(name = "personaluserid", sequenceName = "personaluserid", initialValue = 2001)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	@NotEmpty
 	@Size(max = 25,message = "max character should be 25")

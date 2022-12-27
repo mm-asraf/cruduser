@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+
 import com.indusnet.cruduserdetails.Repository.IFinancialDetailsRepository;
 import com.indusnet.cruduserdetails.exception.RecordNotFoundException;
 import com.indusnet.cruduserdetails.model.FinancialDetails;
@@ -11,6 +13,7 @@ import com.indusnet.cruduserdetails.model.common.MessageTypeConst;
 import com.indusnet.cruduserdetails.model.common.ResponseModel;
 import com.indusnet.cruduserdetails.service.IFinancialDetailsService;
 
+@Service
 public class FinancialDetailsImpl implements IFinancialDetailsService {
 
 	@Autowired

@@ -1,12 +1,19 @@
 package com.indusnet.cruduserdetails.service.Impl;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
+import com.indusnet.cruduserdetails.Repository.IDemoScanAadhaarRepository;
+import com.indusnet.cruduserdetails.Repository.IDemoScanPanRepository;
 import com.indusnet.cruduserdetails.Repository.IPersonalDetailsRepository;
 import com.indusnet.cruduserdetails.exception.RecordFoundException;
 import com.indusnet.cruduserdetails.exception.RecordNotFoundException;
+import com.indusnet.cruduserdetails.model.DemoScanAadhaar;
+import com.indusnet.cruduserdetails.model.DemoScanPan;
 import com.indusnet.cruduserdetails.model.PersonalDetails;
 import com.indusnet.cruduserdetails.model.common.MessageTypeConst;
 import com.indusnet.cruduserdetails.model.common.ResponseModel;
@@ -22,20 +29,41 @@ public class PersonalDetailsImpl implements IPersonalDetailsService {
 	@Autowired
 	IPersonalDetailsRepository iPersonalDetailsRepo;
 	
+	@Autowired
+	IDemoScanPanRepository iDemoScanPanRepository;
+	
+	@Autowired
+	IDemoScanAadhaarRepository iDemoScanAadhaarRepo;
+	
 	/**
 	 *this method is used for collecting user personal details.
 	 */
+	DemoScanPan scanpan;
+	DemoScanAadhaar scanaadhaar;
+	PersonalDetails personalDetails;
+	PersonalDetails user;
 	@Override
-	public ResponseModel createPersonUser( PersonalDetails user) {
-		PersonalDetails personalDetails = PersonalDetails.builder()
-				.dateOfBirth(user.getDateOfBirth())
-				.firstName(user.getFirstName())
-				.midName(user.getMidName())
-				.lastName(user.getLastName())
-				.placeOfBirth(user.getPlaceOfBirth())
-				.nationality(user.getNationality())
-				.build();
-		iPersonalDetailsRepo.findById(user.getId()).ifPresentOrElse(x->{throw new RecordFoundException("already exist"); }, ()->iPersonalDetailsRepo.save(personalDetails));
+	public ResponseModel createPersonUser( ) {
+		
+		Optional<DemoScanPan> dbpan = iDemoScanPanRepository.findByPanNumber(scanpan.getPanNumber());
+		
+		if(dbpan.isPresent()) {
+			 personalDetails = PersonalDetails.builder()
+					.firstName(scanaadhaar.getFirstName())
+					.midName(scanaadhaar.getMidName())
+					.lastName(scanaadhaar.getLastName())
+					.dateOfBirth(scanaadhaar.getDateOfBirth())
+					.placeOfBirth(scanaadhaar.getCity())
+					.nationality("Indian")
+					.build();
+			 iPersonalDetailsRepo.save(personalDetails);
+		}
+		System.out.println(user);
+	
+//		iPersonalDetailsRepo.findById(user.getId()).ifPresentOrElse(x->{throw new RecordFoundException("already exist"); }, ()->iPersonalDetailsRepo.save(personalDetails));
+//		System.out.println(user);
+//		System.out.println(personalDetails);
+		
 		return ResponseModel.builder().message("data added successfully").messageTypeId(MessageTypeConst.SUCCESS.getMessage()).statusCode(HttpStatus.OK).build();
 	}
 

@@ -26,7 +26,7 @@ public class EmploymentDetails {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="Eid")
-	@SequenceGenerator(name = "Eid", sequenceName = "Eid", initialValue = 6001)
+	@SequenceGenerator(name = "Eid", sequenceName = "Eid", initialValue = 72001)
 	private Long id;
 	@NotEmpty
 	@Pattern(regexp="[a-zA-Z]{2,12}", message = "employment type must not contains numbers or special characters")

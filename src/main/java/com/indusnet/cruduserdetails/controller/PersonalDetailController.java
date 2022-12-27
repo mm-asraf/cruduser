@@ -45,8 +45,8 @@ public class PersonalDetailController {
 	}
 
 	@PostMapping
-	public ResponseEntity<ResponseModel> createPersonUser( @RequestBody @Valid PersonalDetails request) {
-		ResponseModel response = iPersonalDetailService.createPersonUser(request);
+	public ResponseEntity<ResponseModel> createPersonUser() {
+		ResponseModel response = iPersonalDetailService.createPersonUser();
 		HttpStatus status = response.getStatusCode() != null ? response.getStatusCode() : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<>(response,status);
 	}

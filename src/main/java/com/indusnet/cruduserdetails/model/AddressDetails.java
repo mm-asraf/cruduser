@@ -35,7 +35,7 @@ public class AddressDetails {
 	@Size(max = 30,message = "max character should be 30")
 	@Pattern(regexp="[a-zA-Z]{2,12}", message = "city must not contains numbers or special characters")
 	private String city;
-	@NotEmpty
+	@NotEmpty//[a-zA-Z]{3,12}
 	@Pattern(regexp="[a-zA-Z]{2,12}", message = "state must not contains numbers or special characters")
 	private String state;
 	@NotEmpty

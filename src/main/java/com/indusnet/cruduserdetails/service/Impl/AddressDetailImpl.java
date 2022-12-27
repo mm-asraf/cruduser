@@ -3,6 +3,8 @@ package com.indusnet.cruduserdetails.service.Impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+
 import com.indusnet.cruduserdetails.Repository.IAddressDetailsRepository;
 import com.indusnet.cruduserdetails.exception.RecordNotFoundException;
 import com.indusnet.cruduserdetails.model.AddressDetails;
@@ -10,6 +12,7 @@ import com.indusnet.cruduserdetails.model.common.MessageTypeConst;
 import com.indusnet.cruduserdetails.model.common.ResponseModel;
 import com.indusnet.cruduserdetails.service.IAddressDetailsService;
 
+@Service
 public class AddressDetailImpl implements IAddressDetailsService{
 
 	@Autowired
