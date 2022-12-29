@@ -13,7 +13,7 @@ import com.indusnet.cruduserdetails.model.common.ResponseModel;
 public interface IPersonalDetailsService {
 	public  List<PersonalDetails> getAllUser();
 	public PersonalDetails getPersonUser(Long userId);
-	public ResponseModel createPersonUser();
+	public ResponseModel createPersonUser(Long personalId);
 	public ResponseModel updatePersonUser(PersonalDetails person,Long user);
 	public ResponseModel deletePersonUser(Long personalId);
 }

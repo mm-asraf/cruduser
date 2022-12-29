@@ -17,13 +17,12 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Builder
-public class OtherPersonalDetails {
+public class OtherPersonalDetailsDto {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="otherPersonalUserId")
 	@SequenceGenerator(name = "otherPersonalUserId", sequenceName = "otherPersonalUserId", initialValue = 5001)
@@ -51,7 +50,7 @@ public class OtherPersonalDetails {
 	private String gender;
 	@OneToOne(cascade = CascadeType.ALL)
 //	@OneToOne(mappedBy = "otherPersonalDetails")
-	private PersonalDetails personalDetails;
+	private Long personalDetails;
 	
 	
 	

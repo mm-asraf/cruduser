@@ -26,6 +26,8 @@ import com.indusnet.cruduserdetails.service.IPersonalDetailsService;
 @Service
 public class PersonalDetailsImpl implements IPersonalDetailsService {
 	
+
+	
 	@Autowired
 	IPersonalDetailsRepository iPersonalDetailsRepo;
 	
@@ -37,33 +39,48 @@ public class PersonalDetailsImpl implements IPersonalDetailsService {
 	
 	/**
 	 *this method is used for collecting user personal details.
+
 	 */
-	DemoScanPan scanpan;
-	DemoScanAadhaar scanaadhaar;
-	PersonalDetails personalDetails;
-	PersonalDetails user;
-	@Override
-	public ResponseModel createPersonUser( ) {
-		
-		Optional<DemoScanPan> dbpan = iDemoScanPanRepository.findByPanNumber(scanpan.getPanNumber());
-		
-		if(dbpan.isPresent()) {
-			 personalDetails = PersonalDetails.builder()
-					.firstName(scanaadhaar.getFirstName())
-					.midName(scanaadhaar.getMidName())
-					.lastName(scanaadhaar.getLastName())
-					.dateOfBirth(scanaadhaar.getDateOfBirth())
-					.placeOfBirth(scanaadhaar.getCity())
-					.nationality("Indian")
-					.build();
-			 iPersonalDetailsRepo.save(personalDetails);
-		}
-		System.out.println(user);
 	
-//		iPersonalDetailsRepo.findById(user.getId()).ifPresentOrElse(x->{throw new RecordFoundException("already exist"); }, ()->iPersonalDetailsRepo.save(personalDetails));
-//		System.out.println(user);
-//		System.out.println(personalDetails);
+//	PersonalDetails personalDetails;
+	
+	@Override
+	public ResponseModel createPersonUser( Long personalId) {
 		
+//		Optional<DemoScanPan> dbpan = iDemoScanPanRepository.findById(id);
+//		Optional<DemoScanAadhaar> optional = iDemoScanAadhaarRepo.findById(id);
+//		if(optional.isPresent() ) {
+//			DemoScanAadhaar dbadhaar = optional.get();
+//			 personalDetails = PersonalDetails.builder()
+//					.firstName(dbadhaar.getFirstName())
+//					.midName(dbadhaar.getMidName())
+//					.lastName(dbadhaar.getLastName())
+//					.dateOfBirth(dbadhaar.getDateOfBirth())
+//					.placeOfBirth(dbadhaar.getCity())
+//					.nationality("Indian")
+//					
+//					.build();
+//			 iPersonalDetailsRepo.save(personalDetails);
+//		}else {
+//			throw new RecordNotFoundException("pan card doesn't exits in db");
+//		}		
+//		return ResponseModel.builder().message("data added successfully").messageTypeId(MessageTypeConst.SUCCESS.getMessage()).statusCode(HttpStatus.OK).build();
+		
+		
+		Optional<DemoScanAadhaar> findById = iDemoScanAadhaarRepo.findById(personalId);
+		
+		if(findById.isPresent()) {
+			DemoScanAadhaar data = findById.get();
+			PersonalDetails personalDetails = PersonalDetails.builder().id(personalId)
+					.firstName(data.getFirstName())
+					.midName(data.getMidName())
+					.lastName(data.getLastName())
+					.dateOfBirth(data.getDateOfBirth())
+					.placeOfBirth(data.getCity())
+					.nationality("Indian")
+					.build();	
+			iPersonalDetailsRepo.save(personalDetails);
+		}
 		return ResponseModel.builder().message("data added successfully").messageTypeId(MessageTypeConst.SUCCESS.getMessage()).statusCode(HttpStatus.OK).build();
 	}
 
@@ -99,8 +116,20 @@ public class PersonalDetailsImpl implements IPersonalDetailsService {
 	 *this method is used for getting single user with their personal details.
 	 */
 	@Override
-	public PersonalDetails getPersonUser(Long profileId) {		
-		return iPersonalDetailsRepo.findById(profileId).orElseThrow(()->{throw new RecordNotFoundException("not availble");});
+	public PersonalDetails getPersonUser(Long personalId) {	
+		DemoScanAadhaar data = iDemoScanAadhaarRepo.findById(personalId).orElseThrow(()->{throw new RecordNotFoundException("not availble");});
+		
+		
+		
+		return PersonalDetails.builder().id(personalId)
+				.firstName(data.getFirstName())
+				.midName(data.getMidName())
+				.lastName(data.getLastName())
+				.dateOfBirth(data.getDateOfBirth())
+				.placeOfBirth(data.getCity())
+				.nationality("Indian")
+				.build();
+		
 	}
 
 	/**

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.indusnet.cruduserdetails.model.OtherPersonalDetails;
+import com.indusnet.cruduserdetails.model.OtherPersonalDetailsDto;
 import com.indusnet.cruduserdetails.model.common.ResponseModel;
 import com.indusnet.cruduserdetails.service.IOtherPersonalDetailsService;
 import jakarta.validation.Valid;
@@ -31,13 +32,13 @@ public class OtherPersonalDetailController {
 	}
 
 	@GetMapping("/{otherpersonalId}")
-	public OtherPersonalDetails getOtherPersonal(@PathVariable("otherpersonalId") Long otherpersonalId) {
+	public OtherPersonalDetailsDto getOtherPersonal(@PathVariable("otherpersonalId") Long otherpersonalId) {
 		return iOtherPersonalDetailsService.getOtherPersonal(otherpersonalId);
 	}
 
-	@PostMapping
-	public ResponseEntity<ResponseModel> createOtherPersonal(@RequestBody @Valid OtherPersonalDetails otherPersonalRequest) {
-		ResponseModel response = iOtherPersonalDetailsService.createOtherPersonal(otherPersonalRequest);
+	@PostMapping("/{otherpersonalId}")
+	public ResponseEntity<ResponseModel> createOtherPersonal(@PathVariable ("otherpersonalId") Long otherPersonalId) {
+		ResponseModel response = iOtherPersonalDetailsService.createOtherPersonal(otherPersonalId);
 		HttpStatus status = response.getStatusCode() != null ? response.getStatusCode() : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<>(response,status);
 	}

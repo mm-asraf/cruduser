@@ -1,6 +1,7 @@
 package com.indusnet.cruduserdetails.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.indusnet.cruduserdetails.Repository.IDemoScanAadhaarRepository;
+import com.indusnet.cruduserdetails.model.DemoScanAadhaar;
+import com.indusnet.cruduserdetails.model.DemoScanPan;
 import com.indusnet.cruduserdetails.model.PersonalDetails;
 import com.indusnet.cruduserdetails.model.common.ResponseModel;
 import com.indusnet.cruduserdetails.service.IPersonalDetailsService;
@@ -28,14 +32,19 @@ public class PersonalDetailController {
 
 	@Autowired
 	IPersonalDetailsService iPersonalDetailService;
+	
+	
+	
 
 	@GetMapping
 	public List<PersonalDetails> getPersonUser() {	
 		return this.iPersonalDetailService.getAllUser();
 	}
-
+	
+	
 	@GetMapping("/{personalId}")
 	public PersonalDetails getPersonUser(@PathVariable("personalId") Long personalId) {		
+		
 		return iPersonalDetailService.getPersonUser(personalId);		
 	}
 
@@ -44,9 +53,9 @@ public class PersonalDetailController {
 		return iPersonalDetailService.deletePersonUser(personalId);	
 	}
 
-	@PostMapping
-	public ResponseEntity<ResponseModel> createPersonUser() {
-		ResponseModel response = iPersonalDetailService.createPersonUser();
+	@PostMapping("/{personalId}")
+	public ResponseEntity<ResponseModel> createPersonUser( @PathVariable("personalId") Long id) {
+		ResponseModel response = iPersonalDetailService.createPersonUser(id);
 		HttpStatus status = response.getStatusCode() != null ? response.getStatusCode() : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<>(response,status);
 	}

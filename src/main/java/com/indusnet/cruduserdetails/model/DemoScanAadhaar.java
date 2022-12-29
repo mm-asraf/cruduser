@@ -21,9 +21,10 @@ import lombok.NoArgsConstructor;
 @Getter
 @Builder
 public class DemoScanAadhaar {
+	
+//	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="addressId")
+//	@SequenceGenerator(name = "addressId", sequenceName = "addressId", initialValue = 15001)
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="addressId")
-	@SequenceGenerator(name = "addressId", sequenceName = "addressId", initialValue = 15001)
 	private Long id;
 	@NotEmpty
 	@Size(max = 40,message = "max character should be 30")

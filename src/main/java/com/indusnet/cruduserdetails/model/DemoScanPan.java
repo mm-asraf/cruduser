@@ -22,9 +22,10 @@ import lombok.NoArgsConstructor;
 @Builder
 public class DemoScanPan {
 
+	
+//	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="contactId")
+//	@SequenceGenerator(name = "contactId", sequenceName = "contactId", initialValue = 99501)
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="contactId")
-	@SequenceGenerator(name = "contactId", sequenceName = "contactId", initialValue = 99501)
 	private Long id;
 	
 	@NotEmpty
