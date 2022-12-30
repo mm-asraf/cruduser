@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,8 +32,7 @@ public class ContactDetailController {
 
 	@GetMapping("/{contactId}")
 	public ContactDetails getContactDetail(@PathVariable("contactId") Long contactId) {
-		return iContactDetailService.getContactDetail(contactId);
-		
+		return iContactDetailService.getContactDetail(contactId);	
 	}
 
 	@PostMapping("/contactDetails")
@@ -49,10 +47,5 @@ public class ContactDetailController {
 		ResponseModel response = iContactDetailService.updateContactDetail(contact, contactId);
 		HttpStatus status = response.getStatusCode() != null ? response.getStatusCode() : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<>(response,status);	
-	}
-
-	@DeleteMapping("/{contactId}")
-	public ResponseModel deletePersonUser(@PathVariable("contactId") Long contactId) {		
-		return iContactDetailService.deleteContactDetail(contactId);	
 	}
 }

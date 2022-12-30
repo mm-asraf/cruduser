@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.indusnet.cruduserdetails.dto.AddressDetailsDto;
 import com.indusnet.cruduserdetails.model.AddressDetails;
 import com.indusnet.cruduserdetails.model.common.ResponseModel;
 import com.indusnet.cruduserdetails.service.IAddressDetailsService;
@@ -32,14 +32,13 @@ public class AddressDetailController {
 	}
 
 	@GetMapping("/{addressId}")
-	public AddressDetails getOtherPersonal(@PathVariable("addressId") Long addressId) {
-		return iAddressDetailsService.getAddressDetail(addressId);
-		
+	public AddressDetailsDto getOtherPersonal(@PathVariable("addressId") Long addressId) {
+		return iAddressDetailsService.getAddressDetail(addressId);	
 	}
 
-	@PostMapping
-	public ResponseEntity<ResponseModel> createOtherPersonal(@RequestBody @Valid AddressDetails request) {
-		ResponseModel response = iAddressDetailsService.createAddressDetail(request);
+	@PostMapping("/{addressId}")
+	public ResponseEntity<ResponseModel> createOtherPersonal(@PathVariable("addressId") Long addressId) {
+		ResponseModel response = iAddressDetailsService.createAddressDetail(addressId);
 		HttpStatus status = response.getStatusCode() != null ? response.getStatusCode() : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<>(response,status);
 	}
@@ -49,10 +48,5 @@ public class AddressDetailController {
 		ResponseModel response = iAddressDetailsService.updateAddressDetail(addressDetailRequest,addressId);
 		HttpStatus status = response.getStatusCode() != null ? response.getStatusCode() : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<>(response,status);
-	}
-
-	@DeleteMapping("/{addressId}")
-	public ResponseModel deletePersonUser(@PathVariable("addressId") Long addressId) {		
-		return iAddressDetailsService.deleteAddressDetail(addressId);	
 	}
 }

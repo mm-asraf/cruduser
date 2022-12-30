@@ -13,7 +13,7 @@ import com.indusnet.cruduserdetails.service.IDemoScanAadhaarService;
 
 @Service
 public class DemoScanAadhaarImpl implements IDemoScanAadhaarService {
-	
+
 	@Autowired
 	IDemoScanAadhaarRepository iDemoScanAadhaarRepo;
 
@@ -42,19 +42,16 @@ public class DemoScanAadhaarImpl implements IDemoScanAadhaarService {
 				.address(aadhaar.getAddress())
 				.build();
 		iDemoScanAadhaarRepo.save(aadhaarDetails);
-		return ResponseModel.builder().message("data added successfully").messageTypeId(MessageTypeConst.SUCCESS.getMessage()).statusCode(HttpStatus.OK).build();	
-		
+		return ResponseModel.builder().message("data added successfully").messageTypeId(MessageTypeConst.SUCCESS.getMessage()).statusCode(HttpStatus.OK).build();			
 	}
 
 	@Override
-	public ResponseModel updateAadhaarScan(DemoScanAadhaar aadhaar, Long aId) {
-		
+	public ResponseModel updateAadhaarScan(DemoScanAadhaar aadhaar, Long aId) {	
 		return null;
 	}
 
 	@Override
-	public ResponseModel deleteAadhaarScan(Long aId) {
-		
+	public ResponseModel deleteAadhaarScan(Long aId) {	
 		return null;
 	}
 

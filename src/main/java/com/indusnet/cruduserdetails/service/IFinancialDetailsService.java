@@ -9,5 +9,5 @@ public interface IFinancialDetailsService {
 	public FinancialDetails getFinancialDetail(Long finId);
 	public ResponseModel createFinancialDetail( FinancialDetails financialDetail);
 	public ResponseModel updateFinancialDetail(FinancialDetails financialDetail,Long finId);
-	public ResponseModel deleteFinancialDetail(Long finId);
+	
 }

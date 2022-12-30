@@ -10,5 +10,4 @@ public interface IEmploymentDetailsService {
 	public EmploymentDetails getEmploymentDetail(Long empId);
 	public ResponseModel createEmploymentDetail( EmploymentDetails employeeDetail);
 	public ResponseModel updateEmploymentDetail(EmploymentDetails employeeDetail,Long empId);
-	public ResponseModel deleteEmploymentDetail(Long empId);
 }

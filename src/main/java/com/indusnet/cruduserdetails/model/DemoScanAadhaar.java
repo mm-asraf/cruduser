@@ -1,10 +1,7 @@
 package com.indusnet.cruduserdetails.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -22,8 +19,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class DemoScanAadhaar {
 	
-//	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="addressId")
-//	@SequenceGenerator(name = "addressId", sequenceName = "addressId", initialValue = 15001)
+
 	@Id
 	private Long id;
 	@NotEmpty

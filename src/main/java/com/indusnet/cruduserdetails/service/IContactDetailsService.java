@@ -10,5 +10,4 @@ public interface IContactDetailsService {
 	public ContactDetails getContactDetail(Long contactId);
 	public ResponseModel createContactDetail( ContactDetails contact);
 	public ResponseModel updateContactDetail(ContactDetails contact,Long contactId);
-	public ResponseModel deleteContactDetail(Long contactId);
 }

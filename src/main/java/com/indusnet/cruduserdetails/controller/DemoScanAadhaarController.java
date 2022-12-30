@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.indusnet.cruduserdetails.model.DemoScanAadhaar;
-import com.indusnet.cruduserdetails.model.PersonalDetails;
 import com.indusnet.cruduserdetails.model.common.ResponseModel;
 import com.indusnet.cruduserdetails.service.IDemoScanAadhaarService;
 import jakarta.validation.Valid;
@@ -20,7 +19,7 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/v0/aadhaarScan")
 public class DemoScanAadhaarController {
-	
+
 	@Autowired
 	IDemoScanAadhaarService iDemoAadhaarService;
 
@@ -30,11 +29,9 @@ public class DemoScanAadhaarController {
 		HttpStatus status = response.getStatusCode() != null ? response.getStatusCode() : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<>(response,status);
 	}
-	
-	
+
 	@GetMapping("/{personalId}")
 	public DemoScanAadhaar getPersonUser(@PathVariable("personalId") Long personalId) {		
 		return iDemoAadhaarService.getAadhaarScan(personalId);		
-	}
-	
+	}	
 }

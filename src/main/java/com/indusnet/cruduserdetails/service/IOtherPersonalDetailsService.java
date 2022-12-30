@@ -1,8 +1,9 @@
 package com.indusnet.cruduserdetails.service;
 
 import java.util.List;
+
+import com.indusnet.cruduserdetails.dto.OtherPersonalDetailsDto;
 import com.indusnet.cruduserdetails.model.OtherPersonalDetails;
-import com.indusnet.cruduserdetails.model.OtherPersonalDetailsDto;
 import com.indusnet.cruduserdetails.model.common.ResponseModel;
 
 public interface IOtherPersonalDetailsService {

@@ -51,14 +51,6 @@ public class ContactDetailsImpl implements IContactDetailsService {
 		},()-> {throw new RecordNotFoundException("user details is not present in our db pls try another");});
 		return ResponseModel.builder().message("profile data updated Successfully").statusCode(HttpStatus.OK).messageTypeId(MessageTypeConst.SUCCESS.getMessage()).build();		
 	}
-
-	@Override
-	public ResponseModel deleteContactDetail(Long contactId) {
-		iContactDetailsRepo.findById(contactId).ifPresentOrElse(x->{
-			iContactDetailsRepo.deleteById(contactId);
-		}, ()-> {throw new RecordNotFoundException("Invalid id Not found");});	
-		return ResponseModel.builder().message("data deleted successfully").messageTypeId(MessageTypeConst.SUCCESS.getMessage()).statusCode(HttpStatus.OK).build();
-	}
 }
 
 

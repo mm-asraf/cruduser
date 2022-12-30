@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,11 +30,11 @@ public class FinancialDetailController {
 		return this.iFinancialDetailsService.getAllFinancialUser();
 	}
 
-	@GetMapping("/{finId}")
-	public FinancialDetails getEmploymentDetail(@PathVariable("finId") Long finId) {
-		return iFinancialDetailsService.getFinancialDetail(finId);
-			
-	}
+	//	@GetMapping("/{finId}")
+	//	public FinancialDetailsDto getEmploymentDetail(@PathVariable("finId") Long finId) {
+	//		return iFinancialDetailsService.getFinancialDetail(finId);
+	//			
+	//	}
 
 	@PostMapping
 	public ResponseEntity<ResponseModel> createEmploymentDetail(@RequestBody @Valid FinancialDetails financialDetailRequest) {
@@ -49,10 +48,5 @@ public class FinancialDetailController {
 		ResponseModel response = iFinancialDetailsService.updateFinancialDetail(financialDetailRequest, finId);
 		HttpStatus status = response.getStatusCode() != null ? response.getStatusCode():HttpStatus.NOT_FOUND;
 		return new ResponseEntity<>(response,status);
-	}
-
-	@DeleteMapping("/financialDetail/{finId}")
-	public ResponseModel deleteEmploymentDetail(Long finId) {
-		return iFinancialDetailsService.deleteFinancialDetail(finId);	
 	}
 }
